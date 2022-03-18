@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { useFontContext } from '../../utils/FontContexts';
 
@@ -6,8 +6,8 @@ import '../../styles/style.css';
 
 export default function Home() {
 // access the context value
-    const { fonts, isLoading } = useFontContext();
-    const [selectedFont, setSelectedFont] = useState('');
+    const { fonts, isLoading, selectedFont, handleFontChange } = useFontContext();
+   // const [selectedFont, setSelectedFont] = useState('');
     let tabind = 2;
     return(
         <div>
@@ -17,11 +17,11 @@ export default function Home() {
                 {fonts.map((font, index) => (
                     <section tabIndex={index+tabind} className={`${index === 0 ? 'left' : 'right'}
                                         ${font.id=== selectedFont ? ' selected':''}`} 
-                        key={font.id} onClick={() => setSelectedFont(font.id)}
+                        key={font.id} onClick={() => handleFontChange(font.id)}
                         onKeyPress={(ev) => {
                             if (ev.key === "Enter") {
                               ev.preventDefault();
-                              setSelectedFont(font.id);
+                              handleFontChange(font.id);
                             }
                           }}
                         >
