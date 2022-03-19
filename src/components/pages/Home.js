@@ -7,7 +7,6 @@ import '../../styles/style.css';
 export default function Home() {
 // access the context value
     const { fonts, isLoading, selectedFont, handleFontChange } = useFontContext();
-   // const [selectedFont, setSelectedFont] = useState('');
     let tabind = 2;
     return(
         <div>

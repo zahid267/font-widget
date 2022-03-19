@@ -1,27 +1,10 @@
-import React, { useState, useEffect } from "react";
-
+import React from "react";
+import { useFontContext } from '../../utils/FontContexts';
 import '../../styles/style.css';
 
-const { REACT_APP_FONTURLB } = process.env;
-
 export default function Buy() {
-        const [text, setText] = useState('');
-        const [txLoading, setTxLoading] = useState(true);
-
-        useEffect(() => {
-            const fetchText = () => {
-               fetch(`${REACT_APP_FONTURLB}`)
-                 .then((response) => response.json())
-                 .then((data) => {
-                   const content = data.content;
-                   setText(content);
-                   setTxLoading(false);
-                 })
-                 .catch((error) => console.log("An error occured when fetching data - " + error));
-             };
-             fetchText();
-           }, []);
-
+  const { text, txLoading } = useFontContext()
+       
     return(
         <div className="fonttext">
             {text ?
