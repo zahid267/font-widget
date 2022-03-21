@@ -1,8 +1,17 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import '../styles/style.css';
 // Here we are using object destructuring assignment to pluck off our variables from the props object
 // We assign them to their own variable names
 function NavTabs({ currentPage, handlePageChange }) {
+
+  NavTabs.propTypes = {
+    currentPage: PropTypes.oneOfType([
+          PropTypes.func,
+          PropTypes.string
+      ]),
+    handlePageChange: PropTypes.func.isRequired
+  };
 
   return (
     <div className='d-flex justify-content-between'>

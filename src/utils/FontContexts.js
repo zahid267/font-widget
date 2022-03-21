@@ -1,9 +1,11 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
+import PropTypes from "prop-types";
 const { REACT_APP_FONTURLA } = process.env;
 const { REACT_APP_FONTURLB } = process.env;
 
 // create context
 const FontContext = createContext();
+
 export const useFontContext = () => useContext(FontContext);
 export const FontContextProvider = ({ children }) => {
   
@@ -39,10 +41,15 @@ export const FontContextProvider = ({ children }) => {
     fetchText();
   }, []);
   const handleFontChange = (font) => setSelectedFont(font);
+
   return (
     // the Provider gives access to the context to its children
     <FontContext.Provider value={{ fonts, isLoading, selectedFont, handleFontChange, text, txLoading }}>
-      {children}
+      { children }
     </FontContext.Provider>
   );
+  
 };
+FontContextProvider.propTypes = {
+  children: PropTypes.object
+}
